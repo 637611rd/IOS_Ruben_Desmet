@@ -9,8 +9,10 @@
 import UIKit
 
 class ItemTableViewController: UITableViewController {
-    
+    rrrrr
     var items: [Item] = []
+    var categorie:Categorie=Categorie(naam: "", beschrijving: "")
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +26,7 @@ class ItemTableViewController: UITableViewController {
         } else {
             items = Item.loadSampleItems()
         }
+         navigationItem.title=categorie.naam
     }
     
     override func viewWillAppear(_ animated: Bool) {

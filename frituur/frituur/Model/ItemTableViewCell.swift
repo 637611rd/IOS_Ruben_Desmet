@@ -9,7 +9,8 @@
 import UIKit
 class ItemTableViewCell: UITableViewCell {
     
-   
+
+    
     @IBOutlet weak var itemNaam: UILabel!
     
     func update(with item: Item) {
