@@ -8,7 +8,7 @@ class CategorieViewController: UITableViewController {
     
     var categories: [Categorie] = [
         Categorie(naam: "Snacks", beschrijving: "Frikandel, Boulet, ..."),
-        Categorie(naam: "Drinken", beschrijving: "Coca-Cola, Fanta, ..."),
+        Categorie(naam: "Drank", beschrijving: "Coca-Cola, Fanta, ..."),
         Categorie(naam: "Frieten", beschrijving: "Groot, Middel, Klein")
         
     ]

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1277881221A97988006F4FE5 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1277881121A97987006F4FE5 /* ItemViewController.swift */; };
+		127AC5D921A95CF30013FB22 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127AC5D821A95CF30013FB22 /* AccountViewController.swift */; };
 		12B54D3A21931795001EE732 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B54D3921931795001EE732 /* AppDelegate.swift */; };
 		12B54D3C21931795001EE732 /* CategorieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B54D3B21931795001EE732 /* CategorieViewController.swift */; };
 		12B54D3F21931795001EE732 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12B54D3D21931795001EE732 /* Main.storyboard */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1277881121A97987006F4FE5 /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
+		127AC5D821A95CF30013FB22 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		12B54D3621931795001EE732 /* frituur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = frituur.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12B54D3921931795001EE732 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12B54D3B21931795001EE732 /* CategorieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorieViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +85,8 @@
 			children = (
 				12B54D3B21931795001EE732 /* CategorieViewController.swift */,
 				12B54D552193295A001EE732 /* SnackViewController.swift */,
+				127AC5D821A95CF30013FB22 /* AccountViewController.swift */,
+				1277881121A97987006F4FE5 /* ItemViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -174,9 +180,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				12B54D5221931E8F001EE732 /* Categorie.swift in Sources */,
+				127AC5D921A95CF30013FB22 /* AccountViewController.swift in Sources */,
 				12B54D3C21931795001EE732 /* CategorieViewController.swift in Sources */,
 				12B54D3A21931795001EE732 /* AppDelegate.swift in Sources */,
 				12B54D562193295A001EE732 /* SnackViewController.swift in Sources */,
+				1277881221A97988006F4FE5 /* ItemViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

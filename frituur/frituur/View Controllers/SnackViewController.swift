@@ -7,4 +7,6 @@ class SnackViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
        navigationItem.title=categorie.naam
     }
+    
+   
 }
