@@ -44,6 +44,7 @@ class AddEditItemTableViewController:UITableViewController{
         let naam = itemNaamTextField.text ?? ""
         
         item = Item(naam: naam)
+        
     }
     
     

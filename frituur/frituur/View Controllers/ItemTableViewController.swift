@@ -9,14 +9,14 @@
 import UIKit
 
 class ItemTableViewController: UITableViewController {
-    rrrrr
+    
     var items: [Item] = []
     var categorie:Categorie=Categorie(naam: "", beschrijving: "")
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("in viewdidload")
+  
         self.navigationItem.leftBarButtonItem = self.editButtonItem
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44.0
@@ -31,7 +31,7 @@ class ItemTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("in viewwillappear")
+        
         tableView.reloadData()
     }
     
@@ -90,6 +90,8 @@ class ItemTableViewController: UITableViewController {
             
             addEditItemTableViewController.item = item
         }
+        
+        
     }
     
     @IBAction func unwindToItemTableView(segue: UIStoryboardSegue) {
@@ -101,6 +103,7 @@ class ItemTableViewController: UITableViewController {
         print(sourceViewController)
 
         if let item = sourceViewController.item {
+            
             if let selectedIndexPath =
                 tableView.indexPathForSelectedRow {
                 items[selectedIndexPath.row] = item

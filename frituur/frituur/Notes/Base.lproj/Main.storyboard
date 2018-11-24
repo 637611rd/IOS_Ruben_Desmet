@@ -134,8 +134,16 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Item" id="2of-Qk-kfH">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="iNM-Ib-l4U"/>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="ySw-BA-Odr"/>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="iNM-Ib-l4U">
+                            <connections>
+                                <segue destination="yeN-iK-jCh" kind="unwind" unwindAction="unwindToItemTableViewWithSegue:" id="MpN-lC-wdu"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="ySw-BA-Odr">
+                            <connections>
+                                <segue destination="yeN-iK-jCh" kind="unwind" identifier="saveUnwind" unwindAction="unwindToItemTableViewWithSegue:" id="c9e-IB-pLY"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -144,6 +152,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NVg-3Y-DdE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="yeN-iK-jCh" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3425" y="124"/>
         </scene>
