@@ -55,8 +55,8 @@ class CategorieViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        let des = segue.destination as! ItemTableViewController
-        des.categorie=self.categorieSelected
+      //  let des = segue.destination as! UINavigationController
+        //des.categorie=self.categorieSelected
         print(self.categorieSelected.naam)
         
     }
