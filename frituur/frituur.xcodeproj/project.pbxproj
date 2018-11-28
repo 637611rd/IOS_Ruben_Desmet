@@ -19,6 +19,7 @@
 		12B54D4421931797001EE732 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12B54D4221931797001EE732 /* LaunchScreen.storyboard */; };
 		12B54D5221931E8F001EE732 /* Categorie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B54D5121931E8F001EE732 /* Categorie.swift */; };
 		12B54D562193295A001EE732 /* SnackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B54D552193295A001EE732 /* SnackViewController.swift */; };
+		12D8740221AE95AA00B2EEFC /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D8740121AE95AA00B2EEFC /* Account.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		12B54D4521931797001EE732 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		12B54D5121931E8F001EE732 /* Categorie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categorie.swift; sourceTree = "<group>"; };
 		12B54D552193295A001EE732 /* SnackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackViewController.swift; sourceTree = "<group>"; };
+		12D8740121AE95AA00B2EEFC /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				12B54D5121931E8F001EE732 /* Categorie.swift */,
 				1277881321A97A0D006F4FE5 /* ItemTableViewCell.swift */,
 				1277881521A97A41006F4FE5 /* Item.swift */,
+				12D8740121AE95AA00B2EEFC /* Account.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				12B54D3C21931795001EE732 /* CategorieViewController.swift in Sources */,
 				12B54D3A21931795001EE732 /* AppDelegate.swift in Sources */,
 				1277881C21A98BDA006F4FE5 /* AddEditItemTableViewController.swift in Sources */,
+				12D8740221AE95AA00B2EEFC /* Account.swift in Sources */,
 				1277881621A97A41006F4FE5 /* Item.swift in Sources */,
 				12B54D562193295A001EE732 /* SnackViewController.swift in Sources */,
 				1277881421A97A0D006F4FE5 /* ItemTableViewCell.swift in Sources */,
@@ -343,6 +347,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TBWYH7LYWP;
 				INFOPLIST_FILE = frituur/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -360,6 +365,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TBWYH7LYWP;
 				INFOPLIST_FILE = frituur/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

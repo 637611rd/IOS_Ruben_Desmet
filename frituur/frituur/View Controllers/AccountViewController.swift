@@ -8,6 +8,7 @@
 
 //import Foundation
 import UIKit
+import MessageUI
 
 class AccountViewController : UIViewController {
     
@@ -20,11 +21,14 @@ class AccountViewController : UIViewController {
     }
     
     func registerForKeyboardNotifications() {
-       // NotificationCenter.default.addObserver(self, selector:
-         //   #selector(keyboardWasShown(_:)),name: .UIResponder.keyboardDidShowNotification, object: nil)
-       // NotificationCenter.default.addObserver(self, selector:
-           // #selector(keyboardWillBeHidden(_:)),name: .UIResponder.keyboardWillHideNotification, object:nil)
+        
 
+  //      NotificationCenter.default.addObserver(self, selector:
+   //     #selector(keyboardWasShown(_:)),
+     //   name: .UIKeyboardDidShow, object: nil)
+    //    NotificationCenter.default.addObserver(self, selector:
+   //     #selector(keyboardWillBeHidden(_:)),
+      //  name: .UIKeyboardWillHide, object: nil)
     }
     
     @objc func keyboardWasShown(_ notificiation: NSNotification) {
@@ -32,16 +36,16 @@ class AccountViewController : UIViewController {
             let keyboardFrameValue =
             info[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue
             else { return }
-
+        
         let keyboardFrame = keyboardFrameValue.cgRectValue
         let keyboardSize = keyboardFrame.size
-
+        
         let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0,
                                          bottom: keyboardSize.height, right: 0.0)
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
     }
-
+    
     @objc func keyboardWillBeHidden(_ notification: NSNotification) {
         let contentInsets = UIEdgeInsets.zero
         scrollView.contentInset = contentInsets
@@ -49,6 +53,30 @@ class AccountViewController : UIViewController {
     }
     
     
+    @IBAction func mailClicked(_ sender: UIButton) {
+        if MFMailComposeViewController.canSendMail() {
+            print("In mailclicked")
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self as? MFMailComposeViewControllerDelegate
+            mail.setToRecipients(["rubendesmet@live.be"])
+            mail.setSubject("Vraag over de app")
+            mail.setMessageBody("<p>Beste, </p><br><p>Verander deze tekst door je vraag </p>", isHTML: true)
+            
+            present(mail, animated: true,completion: nil)
+            
+            
+        }
+        
+        func openMail(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+            
+            controller.dismiss(animated: true,completion: nil)
+        }
+        
+    }
+    
 }
+
+
+
 
 
