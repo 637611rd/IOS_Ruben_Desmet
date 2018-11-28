@@ -13,11 +13,17 @@ import MessageUI
 class AccountViewController : UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
+    var account:Account=Account(voornaam: "init", achternaam: "init", straat: "init", nummer: "init", stad: "init")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         registerForKeyboardNotifications()
+        if let savedAccount = Account.loadFromFile() {
+            account = savedAccount
+        } else {
+            account = Account.loadSampleItems()
+        }
     }
     
     func registerForKeyboardNotifications() {

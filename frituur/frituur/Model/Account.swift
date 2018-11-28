@@ -22,4 +22,27 @@ class Account:Codable{
         self.stad=stad
         
     }
+    static let DocumentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("account").appendingPathExtension("plist")
+    
+    static func loadSampleItems() -> Account {
+        return Account(voornaam: "account", achternaam: "account", straat: "account", nummer: "account", stad: "account")
+    }
+    
+    static func saveToFile(account: [Account]) {
+        let propertyListEncoder = PropertyListEncoder()
+        let codedAccount = try? propertyListEncoder.encode(account)
+        
+        try? codedAccount?.write(to: ArchiveURL, options: .noFileProtection)
+        
+    }
+    
+    static func loadFromFile() -> Account? {
+        guard let codedAccount = try? Data(contentsOf: ArchiveURL) else { return nil }
+        
+        let propertyListDecoder = PropertyListDecoder()
+        
+        return try? propertyListDecoder.decode(Account.self, from: codedAccount)
+    }
 }
