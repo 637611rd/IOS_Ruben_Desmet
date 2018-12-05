@@ -83,6 +83,7 @@ class ItemTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EditItem" {
+            print("inEditItem")
             let indexPath = tableView.indexPathForSelectedRow!
             let item = items[indexPath.row]
             let navigationViewController = segue.destination as! UINavigationController

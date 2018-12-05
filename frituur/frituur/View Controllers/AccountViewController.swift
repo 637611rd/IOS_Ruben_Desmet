@@ -10,7 +10,7 @@
 import UIKit
 import MessageUI
 
-class AccountViewController : UIViewController {
+class AccountViewController : UIViewController, MFMailComposeViewControllerDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     var account:Account=Account(voornaam: "init", achternaam: "init", straat: "init", nummer: "init", stad: "init")
@@ -24,17 +24,18 @@ class AccountViewController : UIViewController {
         } else {
             account = Account.loadSampleItems()
         }
+        vulIn(voornaam: account.voornaam)
     }
     
     func registerForKeyboardNotifications() {
         
 
-  //      NotificationCenter.default.addObserver(self, selector:
-   //     #selector(keyboardWasShown(_:)),
-     //   name: .UIKeyboardDidShow, object: nil)
-    //    NotificationCenter.default.addObserver(self, selector:
-   //     #selector(keyboardWillBeHidden(_:)),
-      //  name: .UIKeyboardWillHide, object: nil)
+       NotificationCenter.default.addObserver(self, selector:
+        #selector(keyboardWasShown(_:)),
+                                              name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector:
+        #selector(keyboardWillBeHidden(_:)),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @objc func keyboardWasShown(_ notificiation: NSNotification) {
@@ -73,11 +74,20 @@ class AccountViewController : UIViewController {
             
         }
         
-        func openMail(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-            
-            controller.dismiss(animated: true,completion: nil)
-        }
+     
         
+    }
+    func mailComposeController(_ controller: MFMailComposeViewController,
+                                    didFinishWith result: MFMailComposeResult,
+                                    error: Error?) {
+        
+        controller.dismiss(animated: true,completion: nil)
+    }
+    
+    @IBOutlet weak var textfieldVoornaam: UITextField!
+    
+    func vulIn(voornaam: String){
+        textfieldVoornaam.text=voornaam
     }
     
 }

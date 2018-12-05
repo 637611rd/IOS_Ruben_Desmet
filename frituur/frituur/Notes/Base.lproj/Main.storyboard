@@ -232,7 +232,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="itemNaam" destination="dit-aK-mtY" id="LIU-Om-gUc"/>
-                                    <segue destination="qGN-cm-uQi" kind="presentation" identifier="EditItem" trigger="accessoryAction" id="zXo-0E-8Zn"/>
+                                    <segue destination="qGN-cm-uQi" kind="presentation" identifier="EditItem" id="pCJ-Xe-QF1"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -454,6 +454,7 @@
                     <tabBarItem key="tabBarItem" title="Account" image="man" id="nYh-jT-NRW"/>
                     <connections>
                         <outlet property="scrollView" destination="ZLC-VT-ptC" id="o7J-gg-qJV"/>
+                        <outlet property="textfieldVoornaam" destination="VAv-M5-7jG" id="mIe-bv-5f4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qh4-mQ-rzh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -466,7 +467,7 @@
         <image name="man" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nIJ-sz-dJ7"/>
-        <segue reference="Rst-DE-hsh"/>
+        <segue reference="yxa-lR-51v"/>
+        <segue reference="pCJ-Xe-QF1"/>
     </inferredMetricsTieBreakers>
 </document>
