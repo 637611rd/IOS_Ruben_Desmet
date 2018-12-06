@@ -10,9 +10,15 @@
 import UIKit
 import MessageUI
 
-class AccountViewController : UIViewController, MFMailComposeViewControllerDelegate {
+class AccountViewController : UIViewController, MFMailComposeViewControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var txtVoornaam: UITextField!
+    @IBOutlet weak var txtAchternaam: UITextField!
+    @IBOutlet weak var txtStraat: UITextField!
+    @IBOutlet weak var txtNummer: UITextField!
+    @IBOutlet weak var txtStad: UITextField!
+    
     var account:Account=Account(voornaam: "init", achternaam: "init", straat: "init", nummer: "init", stad: "init")
     
     override func viewDidLoad() {
@@ -25,6 +31,11 @@ class AccountViewController : UIViewController, MFMailComposeViewControllerDeleg
             account = Account.loadSampleItems()
         }
         vulIn(voornaam: account.voornaam)
+        self.txtVoornaam.delegate=self
+        self.txtAchternaam.delegate=self
+        self.txtStad.delegate=self
+        self.txtStraat.delegate=self
+        self.txtNummer.delegate=self
     }
     
     func registerForKeyboardNotifications() {
@@ -51,14 +62,20 @@ class AccountViewController : UIViewController, MFMailComposeViewControllerDeleg
                                          bottom: keyboardSize.height, right: 0.0)
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
+       
     }
     
     @objc func keyboardWillBeHidden(_ notification: NSNotification) {
         let contentInsets = UIEdgeInsets.zero
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
+       
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
     
     @IBAction func mailClicked(_ sender: UIButton) {
         if MFMailComposeViewController.canSendMail() {
@@ -84,10 +101,10 @@ class AccountViewController : UIViewController, MFMailComposeViewControllerDeleg
         controller.dismiss(animated: true,completion: nil)
     }
     
-    @IBOutlet weak var textfieldVoornaam: UITextField!
+
     
     func vulIn(voornaam: String){
-        textfieldVoornaam.text=voornaam
+        txtVoornaam.text=voornaam
     }
     
 }

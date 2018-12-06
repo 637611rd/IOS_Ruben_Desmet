@@ -454,7 +454,11 @@
                     <tabBarItem key="tabBarItem" title="Account" image="man" id="nYh-jT-NRW"/>
                     <connections>
                         <outlet property="scrollView" destination="ZLC-VT-ptC" id="o7J-gg-qJV"/>
-                        <outlet property="textfieldVoornaam" destination="VAv-M5-7jG" id="mIe-bv-5f4"/>
+                        <outlet property="txtAchternaam" destination="QJN-QN-rAv" id="Fyb-1C-uaT"/>
+                        <outlet property="txtNummer" destination="eFz-7l-YKf" id="1DW-5Q-xpS"/>
+                        <outlet property="txtStad" destination="CW0-MN-QAb" id="lEd-lz-AYx"/>
+                        <outlet property="txtStraat" destination="A7N-fp-wFm" id="Gk7-b2-cbj"/>
+                        <outlet property="txtVoornaam" destination="VAv-M5-7jG" id="P3b-6P-dTl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qh4-mQ-rzh" userLabel="First Responder" sceneMemberID="firstResponder"/>
