@@ -116,6 +116,7 @@ class ItemTableViewController: UITableViewController {
                 tableView.insertRows(at: [newIndexPath],with: .automatic)
             }
         }
+        Item.saveToFile(items: items)
         
     }
     

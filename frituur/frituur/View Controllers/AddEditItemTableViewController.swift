@@ -45,6 +45,7 @@ class AddEditItemTableViewController:UITableViewController{
         
         item = Item(naam: naam)
         
+        
     }
     
     
