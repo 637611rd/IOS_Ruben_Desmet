@@ -59,18 +59,11 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sWm-8J-wfm">
-                                            <rect key="frame" x="172" y="9" width="30" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="&gt;">
-                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <segue destination="b3j-eb-fkH" kind="show" id="yxa-lR-51v"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="b3j-eb-fkH" kind="show" id="xZs-3Q-A9C"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -471,7 +464,7 @@
         <image name="man" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yxa-lR-51v"/>
+        <segue reference="xZs-3Q-A9C"/>
         <segue reference="pCJ-Xe-QF1"/>
     </inferredMetricsTieBreakers>
 </document>
