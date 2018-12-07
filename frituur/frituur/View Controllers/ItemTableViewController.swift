@@ -16,17 +16,37 @@ class ItemTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-  
+        
         self.navigationItem.leftBarButtonItem = self.editButtonItem
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44.0
         
-        if let savedItems = Item.loadFromFile() {
-            items = savedItems
-        } else {
-            items = Item.loadSampleItems()
+        switch categorie.naam {
+        case "Snacks":
+            if let savedItems = Item.loadFromSnacksFile() {
+                items = savedItems
+            } else {
+                items = Item.loadSampleItems()
+            }
+        case "Drank":
+            if let savedItems = Item.loadFromDrankFile() {
+                items = savedItems
+            } else {
+                items = Item.loadSampleItems()
+            }
+        case "Frieten":
+            if let savedItems = Item.loadFromFrietenFile() {
+                items = savedItems
+            } else {
+                items = Item.loadSampleItems()
+            }
+        
+            
+        default:
+            print("Default")
         }
-         navigationItem.title=categorie.naam
+        
+        navigationItem.title=categorie.naam
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,7 +89,18 @@ class ItemTableViewController: UITableViewController {
         if editingStyle == .delete {
             items.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
-            Item.saveToFile(items: items)
+            switch categorie.naam {
+            case "Snacks":
+                Item.saveToSnacksFile(items: items)
+            case "Drank":
+                Item.saveToDrankFile(items: items)
+            case "Frieten":
+               Item.saveToFrietenFile(items: items)
+           
+                
+            default:
+                print("Default")
+            }
         }
     }
     
@@ -103,7 +134,7 @@ class ItemTableViewController: UITableViewController {
         let sourceViewController = segue.source as!
         AddEditItemTableViewController
         print(sourceViewController)
-
+        
         if let item = sourceViewController.item {
             
             if let selectedIndexPath =
@@ -116,7 +147,17 @@ class ItemTableViewController: UITableViewController {
                 tableView.insertRows(at: [newIndexPath],with: .automatic)
             }
         }
-        Item.saveToFile(items: items)
+        switch categorie.naam {
+        case "Snacks":
+            Item.saveToSnacksFile(items: items)
+        case "Drank":
+            Item.saveToDrankFile(items: items)
+        case "Frieten":
+            Item.saveToFrietenFile(items: items)
+        
+        default:
+            print("Default")
+        }
         
     }
     
