@@ -5,6 +5,7 @@ import UIKit
 class CategorieViewController: UITableViewController {
     
     var categorieSelected:Categorie=Categorie(naam: "", beschrijving: "")
+    var magDoorOfNiet: Bool=false
     
     var categories: [Categorie] = [
         Categorie(naam: "Snacks", beschrijving: "Frikandel, Boulet, ..."),
@@ -46,7 +47,7 @@ class CategorieViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt
         indexPath: IndexPath) {
         self.categorieSelected = categories[indexPath.row]
-        
+        magDoorOfNiet=true
         print("\(categorieSelected.naam) \(indexPath)")
     }
     // MARK: - Navigation
@@ -55,8 +56,13 @@ class CategorieViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-      //  let des = segue.destination as! UINavigationController
-        //des.categorie=self.categorieSelected
+     // let des = segue.destination as! UITableViewController
+      //  des.categorie=self.categorieSelected
+        
+        let tableViewController = segue.destination as! UITableViewController
+        let itemTableViewController = tableViewController as! ItemTableViewController
+        itemTableViewController.categorie=self.categorieSelected
+      
         print(self.categorieSelected.naam)
         
     }

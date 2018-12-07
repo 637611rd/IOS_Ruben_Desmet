@@ -12,6 +12,7 @@ import MessageUI
 
 class AccountViewController : UIViewController, MFMailComposeViewControllerDelegate, UITextFieldDelegate {
     
+    @IBOutlet weak var btnSlaGegevensOp: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var txtVoornaam: UITextField!
     @IBOutlet weak var txtAchternaam: UITextField!
@@ -28,9 +29,9 @@ class AccountViewController : UIViewController, MFMailComposeViewControllerDeleg
         if let savedAccount = Account.loadFromFile() {
             account = savedAccount
         } else {
-            account = Account.loadSampleItems()
+            account = Account.loadSampleItem()
         }
-        vulIn(voornaam: account.voornaam)
+        vulAccountGegevensIn(voornaam: account.voornaam,achternaam: account.achternaam,straat: account.straat,nummer: account.nummer,stad: account.stad)
         self.txtVoornaam.delegate=self
         self.txtAchternaam.delegate=self
         self.txtStad.delegate=self
@@ -103,8 +104,17 @@ class AccountViewController : UIViewController, MFMailComposeViewControllerDeleg
     
 
     
-    func vulIn(voornaam: String){
+    func vulAccountGegevensIn(voornaam: String,achternaam: String,straat: String,nummer: String,stad: String){
         txtVoornaam.text=voornaam
+        txtAchternaam.text=achternaam
+        txtStraat.text=straat
+        txtNummer.text=nummer
+        txtStad.text=stad
+    }
+    @IBAction func slaGegevensOpButtonTapped(_ sender: Any) {
+        account=Account(voornaam: txtVoornaam.text ?? " ", achternaam: txtAchternaam.text ?? " ", straat: txtStraat.text ?? " ", nummer: txtNummer.text ?? " ", stad: txtStad.text ?? " ")
+        Account.saveToFile(account: account)
+    
     }
     
 }
