@@ -108,6 +108,18 @@ class ItemTableViewController: UITableViewController {
         let movedItem = items.remove(at: fromIndexPath.row)
         items.insert(movedItem, at: to.row)
         tableView.reloadData()
+        switch categorie.naam {
+        case "Snacks":
+            Item.saveToSnacksFile(items: items)
+        case "Drank":
+            Item.saveToDrankFile(items: items)
+        case "Frieten":
+            Item.saveToFrietenFile(items: items)
+            
+            
+        default:
+            print("Default")
+        }
     }
     
     // MARK: - Navigation

@@ -402,7 +402,6 @@
                                                         <rect key="frame" x="8" y="8" width="359" height="59"/>
                                                         <state key="normal" title="Sla gegevens op"/>
                                                         <connections>
-                                                            <action selector="mailClicked:" destination="hAI-Ev-P2Z" eventType="touchUpInside" id="9cy-7N-M5E"/>
                                                             <action selector="slaGegevensOpButtonTapped:" destination="hAI-Ev-P2Z" eventType="touchUpInside" id="n9R-hF-1AH"/>
                                                         </connections>
                                                     </button>

@@ -18,7 +18,6 @@
 		12B54D4121931797001EE732 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12B54D4021931797001EE732 /* Assets.xcassets */; };
 		12B54D4421931797001EE732 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12B54D4221931797001EE732 /* LaunchScreen.storyboard */; };
 		12B54D5221931E8F001EE732 /* Categorie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B54D5121931E8F001EE732 /* Categorie.swift */; };
-		12B54D562193295A001EE732 /* SnackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B54D552193295A001EE732 /* SnackViewController.swift */; };
 		12D8740221AE95AA00B2EEFC /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D8740121AE95AA00B2EEFC /* Account.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +35,6 @@
 		12B54D4321931797001EE732 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		12B54D4521931797001EE732 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		12B54D5121931E8F001EE732 /* Categorie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categorie.swift; sourceTree = "<group>"; };
-		12B54D552193295A001EE732 /* SnackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackViewController.swift; sourceTree = "<group>"; };
 		12D8740121AE95AA00B2EEFC /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,7 +90,6 @@
 			isa = PBXGroup;
 			children = (
 				12B54D3B21931795001EE732 /* CategorieViewController.swift */,
-				12B54D552193295A001EE732 /* SnackViewController.swift */,
 				127AC5D821A95CF30013FB22 /* AccountViewController.swift */,
 				1277881121A97987006F4FE5 /* ItemTableViewController.swift */,
 				1277881B21A98BDA006F4FE5 /* AddEditItemTableViewController.swift */,
@@ -198,7 +195,6 @@
 				1277881C21A98BDA006F4FE5 /* AddEditItemTableViewController.swift in Sources */,
 				12D8740221AE95AA00B2EEFC /* Account.swift in Sources */,
 				1277881621A97A41006F4FE5 /* Item.swift in Sources */,
-				12B54D562193295A001EE732 /* SnackViewController.swift in Sources */,
 				1277881421A97A0D006F4FE5 /* ItemTableViewCell.swift in Sources */,
 				1277881221A97988006F4FE5 /* ItemTableViewController.swift in Sources */,
 			);

@@ -75,6 +75,7 @@ class CategorieViewController: UITableViewController {
         let movedCategorie = categories.remove(at: fromIndexPath.row)
         categories.insert(movedCategorie, at: to.row)
         tableView.reloadData()
+        
     }
     
     override func tableView(_ tableView: UITableView,
