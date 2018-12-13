@@ -23,9 +23,7 @@ class Item: Codable{
     
     static let ArchiveURLFrieten = DocumentsDirectory.appendingPathComponent("frieten").appendingPathExtension("plist")
     
-    static func loadSampleItems() -> [Item] {
-        return [Item(naam: "Test")]
-    }
+    
     
     static func saveToSnacksFile(items: [Item]) {
         let propertyListEncoder = PropertyListEncoder()

@@ -26,9 +26,7 @@ class Account:Codable{
     
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("account").appendingPathExtension("plist")
     
-    static func loadSampleItem() -> Account {
-        return Account(voornaam: " ", achternaam: " ", straat: " ", nummer: " ", stad: " ")
-    }
+    
     
     static func saveToFile(account: Account) {
         let propertyListEncoder = PropertyListEncoder()

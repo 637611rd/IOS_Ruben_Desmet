@@ -25,20 +25,14 @@ class ItemTableViewController: UITableViewController {
         case "Snacks":
             if let savedItems = Item.loadFromSnacksFile() {
                 items = savedItems
-            } else {
-                items = Item.loadSampleItems()
             }
         case "Drank":
             if let savedItems = Item.loadFromDrankFile() {
                 items = savedItems
-            } else {
-                items = Item.loadSampleItems()
-            }
+                }
         case "Frieten":
             if let savedItems = Item.loadFromFrietenFile() {
                 items = savedItems
-            } else {
-                items = Item.loadSampleItems()
             }
         
             

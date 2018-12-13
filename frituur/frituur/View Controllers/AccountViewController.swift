@@ -20,7 +20,7 @@ class AccountViewController : UIViewController, MFMailComposeViewControllerDeleg
     @IBOutlet weak var txtNummer: UITextField!
     @IBOutlet weak var txtStad: UITextField!
     
-    var account:Account=Account(voornaam: "init", achternaam: "init", straat: "init", nummer: "init", stad: "init")
+    var account:Account=Account(voornaam: "", achternaam: "", straat: "", nummer: "", stad: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,10 +28,10 @@ class AccountViewController : UIViewController, MFMailComposeViewControllerDeleg
         registerForKeyboardNotifications()
         if let savedAccount = Account.loadFromFile() {
             account = savedAccount
-        } else {
-            account = Account.loadSampleItem()
         }
         vulAccountGegevensIn(voornaam: account.voornaam,achternaam: account.achternaam,straat: account.straat,nummer: account.nummer,stad: account.stad)
+        
+        //MARK: dit is voor het toetsenbord te laten verdwijnen als je op return duwt.
         self.txtVoornaam.delegate=self
         self.txtAchternaam.delegate=self
         self.txtStad.delegate=self
