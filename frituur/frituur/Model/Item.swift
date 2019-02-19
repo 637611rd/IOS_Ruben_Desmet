@@ -8,6 +8,8 @@
 
 import Foundation
 class Item: Codable{
+    
+    
     var naam: String
     
     init(naam:String) {
@@ -69,5 +71,7 @@ class Item: Codable{
         
         return try? propertyListDecoder.decode(Array<Item>.self, from: codedItems)
     }
+    
+    
 }
 
