@@ -25,6 +25,7 @@ class AddEditItemTableViewController:UITableViewController{
         updateSaveButtonState()
     }
     
+    //Methode die controleert als de save button toonbaar mag zijn of niet.
     func updateSaveButtonState() {
         let itemNaamText = itemNaamTextField.text ?? ""
         
@@ -35,6 +36,7 @@ class AddEditItemTableViewController:UITableViewController{
     @IBAction func textEditingChanged(_ sender: UITextField) { updateSaveButtonState()
     }
     
+    //Om terug te keren naar het vorige scherm. Zelfde "saveUnwind" als in ItemTableViewController
     override func prepare(for segue: UIStoryboardSegue, sender:
         Any?) {
         super.prepare(for: segue, sender: sender)

@@ -63,6 +63,7 @@ class ItemTableViewController: UITableViewController {
         }
     }
     
+    //Voor iedere cell zijn waarde updaten.
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemTableViewCell
         cell.showsReorderControl = true
@@ -79,6 +80,7 @@ class ItemTableViewController: UITableViewController {
         return .delete
     }
     
+    //Delete een item en sla de items opnieuw op
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             items.remove(at: indexPath.row)
@@ -98,6 +100,7 @@ class ItemTableViewController: UITableViewController {
         }
     }
     
+       //Oorspronkelijk stond er edit vanboven in plaats van back. Deze methode zorgde ervoor dat je de elementen van plaats kon verwisselen.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         let movedItem = items.remove(at: fromIndexPath.row)
         items.insert(movedItem, at: to.row)
@@ -118,6 +121,7 @@ class ItemTableViewController: UITableViewController {
     
     // MARK: - Navigation
     
+    //Als je op een item geklikt hebt wordt de 'EditItem' uitgevoerd. Dan geeft hij de item mee aan het volgende scherm.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EditItem" {
             print("inEditItem")
@@ -132,7 +136,7 @@ class ItemTableViewController: UITableViewController {
         
     }
     
-    
+    //Als hij van de Edit pagina terug komt wordt deze methode uitgevoerd. Dan worden de Items opnieuw geladen.
     @IBAction func unwindToItemTableView(segue: UIStoryboardSegue) {
         print("unwindmethode")
         

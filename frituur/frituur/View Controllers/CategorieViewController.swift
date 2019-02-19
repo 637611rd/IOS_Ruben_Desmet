@@ -16,7 +16,7 @@ class CategorieViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        //self.navigationItem.leftBarButtonItem = self.editButtonItem
     }
     
     
@@ -31,6 +31,7 @@ class CategorieViewController: UITableViewController {
             return 0
         }}
     
+    //Voor iedere cell de categorie invullen met beschrijving
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier:
             "CategorieCell", for: indexPath)
@@ -45,7 +46,7 @@ class CategorieViewController: UITableViewController {
         return cell
     }
     
-    
+    //Als je klikt op een categorie wordt de categorie meegegeven naar het volgende scherm.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        
         let indexPath = tableView.indexPathForSelectedRow!
@@ -59,7 +60,7 @@ class CategorieViewController: UITableViewController {
     }
     
     
-   
+   //Oorspronkelijk stond er edit vanboven. Deze methode zorgde ervoor dat je de elementen van plaats kon verwisselen.
     override func tableView(_ tableView: UITableView, moveRowAt
         fromIndexPath: IndexPath, to: IndexPath) {
         let movedCategorie = categories.remove(at: fromIndexPath.row)
@@ -68,6 +69,7 @@ class CategorieViewController: UITableViewController {
         
     }
     
+    //Dit was ook een methode die bij "edit" aangeropen werd.
     override func tableView(_ tableView: UITableView,
                             editingStyleForRowAt indexPath: IndexPath) ->
         UITableViewCell.EditingStyle {

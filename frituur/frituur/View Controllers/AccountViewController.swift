@@ -39,6 +39,7 @@ class AccountViewController : UIViewController, MFMailComposeViewControllerDeleg
         self.txtNummer.delegate=self
     }
     
+    //Functie om het keyboard te laten verschijnen en weer laten te verdwijnen
     func registerForKeyboardNotifications() {
         
 
