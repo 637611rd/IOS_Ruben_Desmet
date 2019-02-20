@@ -9,6 +9,7 @@
 //import Foundation
 import UIKit
 import MessageUI
+import LocalAuthentication
 
 class AccountViewController : UIViewController, MFMailComposeViewControllerDelegate, UITextFieldDelegate {
     
@@ -19,6 +20,7 @@ class AccountViewController : UIViewController, MFMailComposeViewControllerDeleg
     @IBOutlet weak var txtStraat: UITextField!
     @IBOutlet weak var txtNummer: UITextField!
     @IBOutlet weak var txtStad: UITextField!
+    let localAuthenticationContext = LAContext()
     
     var account:Account=Account(voornaam: "", achternaam: "", straat: "", nummer: "", stad: "")
     
@@ -113,9 +115,32 @@ class AccountViewController : UIViewController, MFMailComposeViewControllerDeleg
         txtStad.text=stad
     }
     @IBAction func slaGegevensOpButtonTapped(_ sender: Any) {
-        account=Account(voornaam: txtVoornaam.text ?? " ", achternaam: txtAchternaam.text ?? " ", straat: txtStraat.text ?? " ", nummer: txtNummer.text ?? " ", stad: txtStad.text ?? " ")
-        Account.saveToFile(account: account)
-    
+        
+        if localAuthenticationContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil){
+            localAuthenticationContext.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: "We controleren als jij dit bent.", reply: {(wasCorrect,error) in
+                if wasCorrect{
+                    print("Correct")
+                    self.account=Account(voornaam: self.txtVoornaam.text ?? " ", achternaam: self.txtAchternaam.text ?? " ", straat: self.txtStraat.text ?? " ", nummer: self.txtNummer.text ?? " ", stad: self.txtStad.text ?? " ")
+                    Account.saveToFile(account: self.account)
+                    
+                    let alertController = UIAlertController(title: "Opgeslagen!", message: "Je gegevens werden succesvol opgeslagen!", preferredStyle: .alert)
+                    
+                    let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+                        
+                        print("Ok button tapped");
+                        
+                    }
+                    
+                    alertController.addAction(OKAction)
+                    
+                    self.present(alertController, animated: true, completion:nil)
+                }else{
+                    print("Incorrect")
+                    
+                }
+            })
+        }
+        
     }
     
 }
