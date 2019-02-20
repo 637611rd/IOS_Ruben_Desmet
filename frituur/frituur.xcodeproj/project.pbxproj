@@ -10,6 +10,8 @@
 		12305316221D9150003736C5 /* Splash screen animation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 12305315221D9150003736C5 /* Splash screen animation.gif */; };
 		12305318221D979F003736C5 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12305317221D979F003736C5 /* LocalAuthentication.framework */; };
 		1230531A221DA520003736C5 /* ProfielfotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12305319221DA520003736C5 /* ProfielfotoViewController.swift */; };
+		1230531C221DAA05003736C5 /* Profielfoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1230531B221DAA05003736C5 /* Profielfoto.swift */; };
+		1230531E221DB5E7003736C5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1230531D221DB5E7003736C5 /* AVFoundation.framework */; };
 		1277881221A97988006F4FE5 /* ItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1277881121A97987006F4FE5 /* ItemTableViewController.swift */; };
 		1277881421A97A0D006F4FE5 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1277881321A97A0D006F4FE5 /* ItemTableViewCell.swift */; };
 		1277881621A97A41006F4FE5 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1277881521A97A41006F4FE5 /* Item.swift */; };
@@ -30,6 +32,8 @@
 		12305315221D9150003736C5 /* Splash screen animation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "Splash screen animation.gif"; path = "../../../../../../Downloads/Splash screen animation.gif"; sourceTree = "<group>"; };
 		12305317221D979F003736C5 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		12305319221DA520003736C5 /* ProfielfotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfielfotoViewController.swift; sourceTree = "<group>"; };
+		1230531B221DAA05003736C5 /* Profielfoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profielfoto.swift; sourceTree = "<group>"; };
+		1230531D221DB5E7003736C5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		1277881121A97987006F4FE5 /* ItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewController.swift; sourceTree = "<group>"; };
 		1277881321A97A0D006F4FE5 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		1277881521A97A41006F4FE5 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -55,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1230531E221DB5E7003736C5 /* AVFoundation.framework in Frameworks */,
 				12305318221D979F003736C5 /* LocalAuthentication.framework in Frameworks */,
 				859146C1134B2ACD768FF5C9 /* Pods_frituur.framework in Frameworks */,
 			);
@@ -123,6 +128,7 @@
 				1277881321A97A0D006F4FE5 /* ItemTableViewCell.swift */,
 				1277881521A97A41006F4FE5 /* Item.swift */,
 				12D8740121AE95AA00B2EEFC /* Account.swift */,
+				1230531B221DAA05003736C5 /* Profielfoto.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -148,6 +154,7 @@
 		AFEA6102776D4422FE5BC5D4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1230531D221DB5E7003736C5 /* AVFoundation.framework */,
 				12305317221D979F003736C5 /* LocalAuthentication.framework */,
 				6983FAF7123C40AB679CAA2E /* Pods_frituur.framework */,
 			);
@@ -282,6 +289,7 @@
 			files = (
 				12B54D5221931E8F001EE732 /* Categorie.swift in Sources */,
 				127AC5D921A95CF30013FB22 /* AccountViewController.swift in Sources */,
+				1230531C221DAA05003736C5 /* Profielfoto.swift in Sources */,
 				12B54D3C21931795001EE732 /* CategorieViewController.swift in Sources */,
 				12B54D3A21931795001EE732 /* AppDelegate.swift in Sources */,
 				1230531A221DA520003736C5 /* ProfielfotoViewController.swift in Sources */,
