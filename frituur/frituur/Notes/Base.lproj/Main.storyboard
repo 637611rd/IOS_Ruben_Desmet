@@ -23,6 +23,7 @@
                     <connections>
                         <segue destination="uTU-Ek-BUO" kind="relationship" relationship="viewControllers" id="nYd-QN-nwM"/>
                         <segue destination="hAI-Ev-P2Z" kind="relationship" relationship="viewControllers" id="WSb-KA-gs9"/>
+                        <segue destination="g8J-cy-3WT" kind="relationship" relationship="viewControllers" id="91H-hr-RzJ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5kw-pu-kdY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -476,7 +477,56 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qh4-mQ-rzh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-38" y="757"/>
+            <point key="canvasLocation" x="-1284" y="625"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="fda-Mg-ktq">
+            <objects>
+                <viewController id="g8J-cy-3WT" customClass="ProfielfotoViewController" customModule="frituur" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tW2-bK-wVG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profielfoto:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WFm-8Q-Kf9">
+                                <rect key="frame" x="118" y="60" width="139.5" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vtk-16-Y7b">
+                                <rect key="frame" x="20" y="176" width="335" height="232"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gfv-ko-yMl">
+                                <rect key="frame" x="149.5" y="528" width="76" height="30"/>
+                                <state key="normal" title="Neem Foto"/>
+                                <connections>
+                                    <action selector="neemFotoPressed:" destination="g8J-cy-3WT" eventType="touchUpInside" id="DQK-sG-Qh7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="vtk-16-Y7b" firstAttribute="centerX" secondItem="tW2-bK-wVG" secondAttribute="centerX" id="2MR-P0-dRb"/>
+                            <constraint firstItem="vtk-16-Y7b" firstAttribute="top" secondItem="WFm-8Q-Kf9" secondAttribute="bottom" constant="80" id="3Y3-8a-Xu6"/>
+                            <constraint firstItem="Gfv-ko-yMl" firstAttribute="centerX" secondItem="tW2-bK-wVG" secondAttribute="centerX" id="LV1-hX-Wqf"/>
+                            <constraint firstItem="vtk-16-Y7b" firstAttribute="leading" secondItem="5eO-r2-RdH" secondAttribute="leading" constant="20" id="Rae-7d-4U6"/>
+                            <constraint firstItem="WFm-8Q-Kf9" firstAttribute="centerX" secondItem="tW2-bK-wVG" secondAttribute="centerX" id="a0Y-yz-oRu"/>
+                            <constraint firstItem="5eO-r2-RdH" firstAttribute="trailing" secondItem="vtk-16-Y7b" secondAttribute="trailing" constant="20" id="arV-Tn-wAi"/>
+                            <constraint firstItem="5eO-r2-RdH" firstAttribute="bottom" secondItem="Gfv-ko-yMl" secondAttribute="bottom" constant="60" id="dIN-19-4GX"/>
+                            <constraint firstItem="Gfv-ko-yMl" firstAttribute="top" secondItem="vtk-16-Y7b" secondAttribute="bottom" constant="120" id="g8e-3h-TFS"/>
+                            <constraint firstItem="WFm-8Q-Kf9" firstAttribute="top" secondItem="5eO-r2-RdH" secondAttribute="top" constant="40" id="hk5-xH-zOK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5eO-r2-RdH"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="2Gr-1f-iWS"/>
+                    <connections>
+                        <outlet property="btnNeemFoto" destination="Gfv-ko-yMl" id="V7e-vu-bzr"/>
+                        <outlet property="imageView" destination="vtk-16-Y7b" id="GWu-W0-lp0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UHh-Xc-0VH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-49" y="682"/>
         </scene>
     </scenes>
     <resources>
