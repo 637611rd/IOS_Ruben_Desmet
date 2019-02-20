@@ -35,14 +35,10 @@ class ItemTableViewController: UITableViewController {
         
         switch categorie.naam {
         case "Snacks":
-           
-            zetSnackItems()
+            //zetSnackItems()
             if let savedItems = Item.loadFromSnacksFile() {
                 items = savedItems
             }
-            print("EINDE: ")
-           
-            
         case "Drank":
             if let savedItems = Item.loadFromDrankFile() {
                 items = savedItems
@@ -61,7 +57,7 @@ class ItemTableViewController: UITableViewController {
         navigationItem.title=categorie.naam
     }
     
-    func zetSnackItems(){
+   /* func zetSnackItems(){
         
         ref.child("snacks").observe(.value, with: {(snapshot) in
             
@@ -87,7 +83,7 @@ class ItemTableViewController: UITableViewController {
                 
             }
         })
-    }
+    }*/
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

@@ -28,40 +28,6 @@ class Account:Codable{
     
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("account").appendingPathExtension("plist")
     
-    static func geefGegevens() -> Account?{
-        var acc = Account(voornaam: "", achternaam: "", straat: "", nummer: "", stad: "")
-        
-        
-        return acc
-    }
-    
-    static func krijgGegevensVanDb(){
-        
-        ref.child("Account").observe(.value, with: {(snapshot) in
-            
-            if let result = snapshot.children.allObjects as? [DataSnapshot] {
-                
-                for child in result {
-                    
-                    let naamID = child.key as String //get autoID
-                    
-                    self.ref.child("snacks/\(naamID)/naam").observe(.value, with: { (snapshot) in
-                        if let nameDB = snapshot.value as? String {
-                            
-                            self.naam=nameDB
-                            self.snackItems.append(Item(naam: self.naam))
-                            print("hierin")
-                            
-                            
-                        }
-                        print(self.snackItems)
-                        Item.saveToSnacksFile(items: self.snackItems)
-                    })
-                }
-                
-            }
-        })
-    }
     
     static func saveToFile(account: Account) {
         let propertyListEncoder = PropertyListEncoder()

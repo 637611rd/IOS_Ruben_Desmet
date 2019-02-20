@@ -47,7 +47,7 @@ class AddEditItemTableViewController:UITableViewController{
         let naam = itemNaamTextField.text ?? ""
         
         item = Item(naam: naam)
-        ref.child("snacks").childByAutoId().setValue(["naam": naam])
+        //ref.child("snacks").childByAutoId().setValue(["naam": naam])
         
         
     }
