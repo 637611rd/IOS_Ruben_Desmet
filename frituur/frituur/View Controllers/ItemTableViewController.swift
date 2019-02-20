@@ -31,14 +31,16 @@ class ItemTableViewController: UITableViewController {
        
         
         
-        zetSnackItems()
+        //zetSnackItems()
         
         switch categorie.naam {
         case "Snacks":
            
-            if let savedItems = Item.loadFromSnacksFile(){
+            zetSnackItems()
+            if let savedItems = Item.loadFromSnacksFile() {
                 items = savedItems
             }
+            print("EINDE: ")
            
             
         case "Drank":
@@ -74,11 +76,11 @@ class ItemTableViewController: UITableViewController {
                             
                             self.naam=nameDB
                             self.snackItems.append(Item(naam: self.naam))
-                        
+                        print("hierin")
                             
                             
                         }
-                        
+                        print(self.snackItems)
                         Item.saveToSnacksFile(items: self.snackItems)
                     })
                 }
@@ -111,7 +113,7 @@ class ItemTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemTableViewCell
         cell.showsReorderControl = true
-        
+        //zetSnackItems()
         let item = items[indexPath.row]
         cell.update(with: item)
         

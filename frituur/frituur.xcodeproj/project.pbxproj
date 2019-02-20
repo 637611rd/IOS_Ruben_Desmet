@@ -133,7 +133,6 @@
 				764B93E41603A4078887FC82 /* Pods-frituur.debug.xcconfig */,
 				891F4FB81C5BE3367BFD99D8 /* Pods-frituur.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
