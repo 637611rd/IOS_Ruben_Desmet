@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12305316221D9150003736C5 /* Splash screen animation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 12305315221D9150003736C5 /* Splash screen animation.gif */; };
 		1277881221A97988006F4FE5 /* ItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1277881121A97987006F4FE5 /* ItemTableViewController.swift */; };
 		1277881421A97A0D006F4FE5 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1277881321A97A0D006F4FE5 /* ItemTableViewCell.swift */; };
 		1277881621A97A41006F4FE5 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1277881521A97A41006F4FE5 /* Item.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		12305315221D9150003736C5 /* Splash screen animation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "Splash screen animation.gif"; path = "../../../../../../Downloads/Splash screen animation.gif"; sourceTree = "<group>"; };
 		1277881121A97987006F4FE5 /* ItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewController.swift; sourceTree = "<group>"; };
 		1277881321A97A0D006F4FE5 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		1277881521A97A41006F4FE5 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				12B54D4C21931829001EE732 /* View Controllers */,
 				12B54D4B21931820001EE732 /* Views */,
 				12B54D4021931797001EE732 /* Assets.xcassets */,
+				12305315221D9150003736C5 /* Splash screen animation.gif */,
 				12B54D4221931797001EE732 /* LaunchScreen.storyboard */,
 				12B54D4521931797001EE732 /* Info.plist */,
 				1298AE84221C399600D99241 /* GoogleService-Info.plist */,
@@ -208,6 +211,7 @@
 				1298AE85221C399600D99241 /* GoogleService-Info.plist in Resources */,
 				12B54D4121931797001EE732 /* Assets.xcassets in Resources */,
 				12B54D3F21931795001EE732 /* Main.storyboard in Resources */,
+				12305316221D9150003736C5 /* Splash screen animation.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
