@@ -116,31 +116,40 @@ class AccountViewController : UIViewController, MFMailComposeViewControllerDeleg
     }
     @IBAction func slaGegevensOpButtonTapped(_ sender: Any) {
         
+        
         if localAuthenticationContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil){
             localAuthenticationContext.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: "We controleren als jij dit bent.", reply: {(wasCorrect,error) in
                 if wasCorrect{
                     print("Correct")
-                    self.account=Account(voornaam: self.txtVoornaam.text ?? " ", achternaam: self.txtAchternaam.text ?? " ", straat: self.txtStraat.text ?? " ", nummer: self.txtNummer.text ?? " ", stad: self.txtStad.text ?? " ")
-                    Account.saveToFile(account: self.account)
-                    
-                    let alertController = UIAlertController(title: "Opgeslagen!", message: "Je gegevens werden succesvol opgeslagen!", preferredStyle: .alert)
-                    
-                    let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
-                        
-                        print("Ok button tapped");
-                        
-                    }
-                    
-                    alertController.addAction(OKAction)
-                    
-                    self.present(alertController, animated: true, completion:nil)
+                    self.gegevensOpslaanMetMelding()
                 }else{
                     print("Incorrect")
                     
                 }
             })
         }
+        //Als er geen biometrics aanwezig zijn, zoals bij simulator, dan mag hij gewoon opslaan.
+        else{
+            gegevensOpslaanMetMelding()
+        }
         
+    }
+    
+    private func gegevensOpslaanMetMelding(){
+        self.account=Account(voornaam: self.txtVoornaam.text ?? " ", achternaam: self.txtAchternaam.text ?? " ", straat: self.txtStraat.text ?? " ", nummer: self.txtNummer.text ?? " ", stad: self.txtStad.text ?? " ")
+        Account.saveToFile(account: self.account)
+        
+        let alertController = UIAlertController(title: "Opgeslagen!", message: "Je gegevens werden succesvol opgeslagen!", preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+            
+            print("Ok button tapped");
+            
+        }
+        
+        alertController.addAction(OKAction)
+        
+        self.present(alertController, animated: true, completion:nil)
     }
    
     

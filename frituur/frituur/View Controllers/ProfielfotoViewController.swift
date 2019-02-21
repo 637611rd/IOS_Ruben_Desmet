@@ -74,14 +74,21 @@ class ProfielfotoViewController: UIViewController,UINavigationControllerDelegate
     }
     
     @IBAction func luisterPressed(_ sender: Any) {
+        let account = Account.loadFromFile()
         
-        let string = "Hier kan je je profielfoto selecteren. Neem de linkerknop om vanuit je camera een foto te nemen. Neem de rechterknop om uit je bibliotheek een foto te selecteren."
+        //Als deze uitroepteken een vraagteken zou zijn, dan zegt hij "optional" ervoor luidop.
+        let voornaam=account!.voornaam
+        let achternaam = account!.achternaam
+        
+        let string = "Hallo \(voornaam). \(achternaam). Hier kan je je profielfoto selecteren. Neem de linkerknop om vanuit je camera een foto te nemen. Neem de rechterknop om uit je bibliotheek een foto te selecteren."
         let utterance = AVSpeechUtterance(string: string)
         utterance.voice = AVSpeechSynthesisVoice(language: "nl-BE")
         utterance.rate=0.4
         let synth = AVSpeechSynthesizer()
         synth.speak(utterance)
     }
+    
+    
     
     
 }
