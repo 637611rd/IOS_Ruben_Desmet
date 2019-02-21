@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		12305316221D9150003736C5 /* Splash screen animation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 12305315221D9150003736C5 /* Splash screen animation.gif */; };
 		12305318221D979F003736C5 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12305317221D979F003736C5 /* LocalAuthentication.framework */; };
 		1230531A221DA520003736C5 /* ProfielfotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12305319221DA520003736C5 /* ProfielfotoViewController.swift */; };
 		1230531C221DAA05003736C5 /* Profielfoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1230531B221DAA05003736C5 /* Profielfoto.swift */; };
@@ -29,7 +28,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		12305315221D9150003736C5 /* Splash screen animation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "Splash screen animation.gif"; path = "../../../../../../Downloads/Splash screen animation.gif"; sourceTree = "<group>"; };
 		12305317221D979F003736C5 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		12305319221DA520003736C5 /* ProfielfotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfielfotoViewController.swift; sourceTree = "<group>"; };
 		1230531B221DAA05003736C5 /* Profielfoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profielfoto.swift; sourceTree = "<group>"; };
@@ -94,7 +92,6 @@
 				12B54D4C21931829001EE732 /* View Controllers */,
 				12B54D4B21931820001EE732 /* Views */,
 				12B54D4021931797001EE732 /* Assets.xcassets */,
-				12305315221D9150003736C5 /* Splash screen animation.gif */,
 				12B54D4221931797001EE732 /* LaunchScreen.storyboard */,
 				12B54D4521931797001EE732 /* Info.plist */,
 				1298AE84221C399600D99241 /* GoogleService-Info.plist */,
@@ -225,7 +222,6 @@
 				1298AE85221C399600D99241 /* GoogleService-Info.plist in Resources */,
 				12B54D4121931797001EE732 /* Assets.xcassets in Resources */,
 				12B54D3F21931795001EE732 /* Main.storyboard in Resources */,
-				12305316221D9150003736C5 /* Splash screen animation.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

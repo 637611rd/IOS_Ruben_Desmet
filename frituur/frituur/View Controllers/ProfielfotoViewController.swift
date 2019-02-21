@@ -20,6 +20,7 @@ class ProfielfotoViewController: UIViewController,UINavigationControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getImage(imageName: "profielfoto.png")
        
     }
     
@@ -44,8 +45,34 @@ class ProfielfotoViewController: UIViewController,UINavigationControllerDelegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         imagePicker.dismiss(animated: true, completion: nil)
         imageView.image = info[.originalImage] as? UIImage
+       saveImage(imageName: "profielfoto.png")
+        
         
     }
+    
+    func saveImage(imageName: String){
+        //create an instance of the FileManager
+        let fileManager = FileManager.default
+        //get the image path
+        let imagePath = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(imageName)
+        //get the image we took with camera
+        let image = imageView.image!
+        //get the PNG data for this image
+        let data = image.pngData()
+        //store it in the document directory
+        fileManager.createFile(atPath: imagePath as String, contents: data, attributes: nil)
+    }
+    
+    func getImage(imageName: String){
+        let fileManager = FileManager.default
+        let imagePath = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(imageName)
+        if fileManager.fileExists(atPath: imagePath){
+            imageView.image = UIImage(contentsOfFile: imagePath)
+        }else{
+            print("Er is geen afbeelding")
+        }
+    }
+    
     @IBAction func luisterPressed(_ sender: Any) {
         
         let string = "Hier kan je je profielfoto selecteren. Neem de linkerknop om vanuit je camera een foto te nemen. Neem de rechterknop om uit je bibliotheek een foto te selecteren."
@@ -55,4 +82,6 @@ class ProfielfotoViewController: UIViewController,UINavigationControllerDelegate
         let synth = AVSpeechSynthesizer()
         synth.speak(utterance)
     }
+    
+    
 }
