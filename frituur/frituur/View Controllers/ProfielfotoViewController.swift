@@ -26,19 +26,50 @@ class ProfielfotoViewController: UIViewController,UINavigationControllerDelegate
     
     
     @IBAction func neemFotoPressed(_ sender: Any) {
-        imagePicker =  UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .camera
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker =  UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .camera
+            
+            present(imagePicker, animated: true, completion: nil)
+        }
+        else{
+            let alertController = UIAlertController(title: "Oeps!", message: "Het is niet mogelijk om met jouw toestel de camera te gebruiken!", preferredStyle: .alert)
+            
+            let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+                
+                print("Ok button tapped");
+                
+            }
+            
+            alertController.addAction(OKAction)
+            
+            self.present(alertController, animated: true, completion:nil)
+        }
         
-        present(imagePicker, animated: true, completion: nil)
     }
     
     @IBAction func kiesUitLibraryPressed(_ sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
         imagePicker =  UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         
         present(imagePicker, animated: true, completion: nil)
+        }
+        else{
+            let alertController = UIAlertController(title: "Oeps!", message: "Het is niet mogelijk om met jouw toestel de fotobibliotheek te gebruiken!", preferredStyle: .alert)
+            
+            let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+                
+                print("Ok button tapped");
+                
+            }
+            
+            alertController.addAction(OKAction)
+            
+            self.present(alertController, animated: true, completion:nil)
+        }
         
     }
     
@@ -51,15 +82,15 @@ class ProfielfotoViewController: UIViewController,UINavigationControllerDelegate
     }
     
     func saveImage(imageName: String){
-        //create an instance of the FileManager
+        //Filemanager instance aanmaken
         let fileManager = FileManager.default
-        //get the image path
+        //imagePath opvragen
         let imagePath = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(imageName)
-        //get the image we took with camera
+        //De image zelf opvragen
         let image = imageView.image!
-        //get the PNG data for this image
+        //PNG data opvragen
         let data = image.pngData()
-        //store it in the document directory
+        //opslaan in de document directory
         fileManager.createFile(atPath: imagePath as String, contents: data, attributes: nil)
     }
     
@@ -77,6 +108,8 @@ class ProfielfotoViewController: UIViewController,UINavigationControllerDelegate
         let account = Account.loadFromFile()
         
         //Als deze uitroepteken een vraagteken zou zijn, dan zegt hij "optional" ervoor luidop.
+        //Kan nooit leeg zijn, want als je niets invult bij voor- of achternaam dan is het een lege string: "".
+        //Met het uitroepteken neem je zelf het risico dat er geen null waarde mogelijk is.
         let voornaam=account!.voornaam
         let achternaam = account!.achternaam
         
