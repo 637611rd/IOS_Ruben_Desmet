@@ -164,6 +164,12 @@ class ItemTableViewController: UITableViewController {
             let addEditItemTableViewController = navigationViewController.topViewController as! AddEditItemTableViewController
             
             addEditItemTableViewController.item = item
+            addEditItemTableViewController.db = self.db
+        }
+        else{
+            let navigationViewController = segue.destination as! UINavigationController
+            let addEditItemTableViewController = navigationViewController.topViewController as! AddEditItemTableViewController
+            addEditItemTableViewController.db = self.db
         }
         
         
