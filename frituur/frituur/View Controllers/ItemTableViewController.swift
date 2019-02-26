@@ -14,9 +14,8 @@ class ItemTableViewController: UITableViewController {
     var items: [Item] = []
     //var snackItems=[ItemDb]()
     var categorie:Categorie=Categorie(naam: "", beschrijving: "")
-    var naam:String=""
     var db: Firestore!
- 
+    
     
     
     override func viewDidLoad() {
@@ -27,7 +26,7 @@ class ItemTableViewController: UITableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44.0
         
-       
+        
         
         
         
@@ -35,18 +34,9 @@ class ItemTableViewController: UITableViewController {
         case "Snacks":
             loadData(van: categorie.naam.lowercased())
         case "Drank":
-          /*  if let savedItems = Item.loadFromDrankFile() {
-                items = savedItems
-                }*/
-            return
+            loadData(van: categorie.naam.lowercased())
         case "Frieten":
-            
-           /* if let savedItems = Item.loadFromFrietenFile() {
-                items = savedItems
-            }*/
-            return
-           
-            
+            loadData(van: categorie.naam.lowercased())
         default:
             print("Default")
         }
@@ -68,7 +58,7 @@ class ItemTableViewController: UITableViewController {
         }
     }
     
- 
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -94,7 +84,7 @@ class ItemTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemTableViewCell
         cell.showsReorderControl = true
-       
+        
         let item = items[indexPath.row]
         cell.update(with: item)
         
@@ -117,14 +107,15 @@ class ItemTableViewController: UITableViewController {
             case "Snacks":
                 //Item.saveToSnacksFile(items: items)
                 self.deleteItem(naam: oudElement.naam, uit: categorie.naam.lowercased())
-                return
+                
             case "Drank":
                 //Item.saveToDrankFile(items: items)
-                return
+                self.deleteItem(naam: oudElement.naam, uit: categorie.naam.lowercased())
+                
             case "Frieten":
-              // Item.saveToFrietenFile(items: items)
-                return
-           
+                // Item.saveToFrietenFile(items: items)
+                self.deleteItem(naam: oudElement.naam, uit: categorie.naam.lowercased())
+                
                 
             default:
                 print("Default")
@@ -133,7 +124,7 @@ class ItemTableViewController: UITableViewController {
     }
     
     func deleteItem(naam:String, uit categorie:String){
-       var oudeItemId=String()
+        var oudeItemId=String()
         db.collection(categorie).whereField("naam", isEqualTo: naam)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
@@ -145,7 +136,7 @@ class ItemTableViewController: UITableViewController {
                         
                     }
                     
-                    self.db.collection("snacks").document(oudeItemId).delete() { err in
+                    self.db.collection(categorie).document(oudeItemId).delete() { err in
                         if let err = err {
                             print("Error removing document: \(err)")
                         } else {
@@ -156,7 +147,7 @@ class ItemTableViewController: UITableViewController {
         }
     }
     
-       //Oorspronkelijk stond er edit vanboven in plaats van back. Deze methode zorgde ervoor dat je de elementen van plaats kon verwisselen.
+    //Oorspronkelijk stond er edit vanboven in plaats van back. Deze methode zorgde ervoor dat je de elementen van plaats kon verwisselen.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         let movedItem = items.remove(at: fromIndexPath.row)
         items.insert(movedItem, at: to.row)
@@ -166,10 +157,10 @@ class ItemTableViewController: UITableViewController {
             //Item.saveToSnacksFile(items: items)
             return
         case "Drank":
-          //  Item.saveToDrankFile(items: items)
+            //  Item.saveToDrankFile(items: items)
             return
         case "Frieten":
-           // Item.saveToFrietenFile(items: items)
+            // Item.saveToFrietenFile(items: items)
             return
             
             
@@ -224,20 +215,7 @@ class ItemTableViewController: UITableViewController {
                 tableView.insertRows(at: [newIndexPath],with: .automatic)
             }
         }
-        switch categorie.naam {
-        case "Snacks":
-            //Item.saveToSnacksFile(items: items)
-            return
-        case "Drank":
-            //Item.saveToDrankFile(items: items)
-            return
-        case "Frieten":
-          //  Item.saveToFrietenFile(items: items)
-            return
         
-        default:
-            print("Default")
-        }
         
     }
     
