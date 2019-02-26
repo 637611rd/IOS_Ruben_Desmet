@@ -18,7 +18,8 @@ class AddEditItemTableViewController:UITableViewController{
     var item:Item?
     var db:Firestore!
     var oudeItemId = String()
-
+    var categorie = String()
+    
     
     override func viewDidLoad() {
         if let item = item {
@@ -49,14 +50,27 @@ class AddEditItemTableViewController:UITableViewController{
         guard segue.identifier == "saveUnwind" else { return }
         
         let naam = itemNaamTextField.text ?? ""
-        let OudeNaam = item?.naam
+        let oudeNaam = item?.naam
         
         item = Item(naam: naam)
         
         //Toevoegen aan databank
+        toevoegenAanDb(categorie: self.categorie, naam: naam)
+        
+        //Bij edit: zoek naar het oude element, hou zijn id bij om later te kunnen verwijderen.
+        //Bij gewoon toevoegen: oudenaam is leeg dus voert hij deze code niet uit
+        if let erIsEenOudeNaam = oudeNaam{
+            
+            verwijderOudeIndienEdit(categorie: self.categorie, oudeNaam: erIsEenOudeNaam)
+        }
+        
+        
+    }
+    
+    func toevoegenAanDb(categorie: String, naam:String){
         var ref:DocumentReference? = nil
         
-        ref = self.db.collection("snacks").addDocument(data: item!.dictionary) {
+        ref = self.db.collection(categorie.lowercased()).addDocument(data: item!.dictionary) {
             error in
             
             if let error = error {
@@ -67,8 +81,10 @@ class AddEditItemTableViewController:UITableViewController{
             }
             
         }
-        //Zoek naar het oude element, hou zijn id bij om later te kunnen verwijderen.
-        db.collection("snacks").whereField("naam", isEqualTo: OudeNaam)
+    }
+    
+    func verwijderOudeIndienEdit(categorie: String, oudeNaam:String){
+        db.collection(categorie.lowercased()).whereField("naam", isEqualTo: oudeNaam)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
@@ -79,7 +95,7 @@ class AddEditItemTableViewController:UITableViewController{
                         
                     }
                     
-                    self.db.collection("snacks").document(self.oudeItemId).delete() { err in
+                    self.db.collection(categorie.lowercased()).document(self.oudeItemId).delete() { err in
                         if let err = err {
                             print("Error removing document: \(err)")
                         } else {
@@ -88,13 +104,6 @@ class AddEditItemTableViewController:UITableViewController{
                     }
                 }
         }
-        
-       
-        
-        
-        
-        
-        
     }
     
     

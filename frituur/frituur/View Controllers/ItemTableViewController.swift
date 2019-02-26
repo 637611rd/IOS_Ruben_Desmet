@@ -33,7 +33,7 @@ class ItemTableViewController: UITableViewController {
         
         switch categorie.naam {
         case "Snacks":
-            loadSnackData()
+            loadData(van: categorie.naam.lowercased())
         case "Drank":
           /*  if let savedItems = Item.loadFromDrankFile() {
                 items = savedItems
@@ -54,8 +54,8 @@ class ItemTableViewController: UITableViewController {
         navigationItem.title=categorie.naam
     }
     
-    func loadSnackData(){
-        db.collection("snacks").getDocuments(){
+    func loadData(van categorie:String){
+        db.collection(categorie).getDocuments(){
             querySnapshot, error in
             if let error = error {
                 print("\(error.localizedDescription)")
@@ -116,7 +116,7 @@ class ItemTableViewController: UITableViewController {
             switch categorie.naam {
             case "Snacks":
                 //Item.saveToSnacksFile(items: items)
-                self.deleteSnack(naam: oudElement.naam)
+                self.deleteItem(naam: oudElement.naam, uit: categorie.naam.lowercased())
                 return
             case "Drank":
                 //Item.saveToDrankFile(items: items)
@@ -132,9 +132,9 @@ class ItemTableViewController: UITableViewController {
         }
     }
     
-    func deleteSnack(naam:String){
+    func deleteItem(naam:String, uit categorie:String){
        var oudeItemId=String()
-        db.collection("snacks").whereField("naam", isEqualTo: naam)
+        db.collection(categorie).whereField("naam", isEqualTo: naam)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
@@ -191,11 +191,13 @@ class ItemTableViewController: UITableViewController {
             
             addEditItemTableViewController.item = item
             addEditItemTableViewController.db = self.db
+            addEditItemTableViewController.categorie = self.categorie.naam
         }
         else{
             let navigationViewController = segue.destination as! UINavigationController
             let addEditItemTableViewController = navigationViewController.topViewController as! AddEditItemTableViewController
             addEditItemTableViewController.db = self.db
+            addEditItemTableViewController.categorie = self.categorie.naam
         }
         
         
