@@ -67,6 +67,7 @@ class AddEditItemTableViewController:UITableViewController{
             }
             
         }
+        //Zoek naar het oude element, hou zijn id bij om later te kunnen verwijderen.
         db.collection("snacks").whereField("naam", isEqualTo: OudeNaam)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {

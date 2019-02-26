@@ -110,11 +110,13 @@ class ItemTableViewController: UITableViewController {
     //Delete een item en sla de items opnieuw op
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            items.remove(at: indexPath.row)
+            let oudElement=items.remove(at: indexPath.row)
+            
             tableView.deleteRows(at: [indexPath], with: .automatic)
             switch categorie.naam {
             case "Snacks":
                 //Item.saveToSnacksFile(items: items)
+                self.deleteSnack(naam: oudElement.naam)
                 return
             case "Drank":
                 //Item.saveToDrankFile(items: items)
@@ -127,6 +129,30 @@ class ItemTableViewController: UITableViewController {
             default:
                 print("Default")
             }
+        }
+    }
+    
+    func deleteSnack(naam:String){
+       var oudeItemId=String()
+        db.collection("snacks").whereField("naam", isEqualTo: naam)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        print("\(document.documentID) => \(document.data())")
+                        oudeItemId=document.documentID
+                        
+                    }
+                    
+                    self.db.collection("snacks").document(oudeItemId).delete() { err in
+                        if let err = err {
+                            print("Error removing document: \(err)")
+                        } else {
+                            print("Document successfully removed!")
+                        }
+                    }
+                }
         }
     }
     
