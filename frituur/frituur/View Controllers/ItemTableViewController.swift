@@ -7,19 +7,21 @@
 //
 
 import UIKit
+import Firestore
 
 class ItemTableViewController: UITableViewController {
     
     var items: [Item] = []
-    var snackItems:[Item] = []
+    //var snackItems=[ItemDb]()
     var categorie:Categorie=Categorie(naam: "", beschrijving: "")
     var naam:String=""
+    var db: Firestore!
  
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        db = Firestore.firestore()
         
         //self.navigationItem.leftBarButtonItem = self.editButtonItem
         tableView.rowHeight = UITableView.automaticDimension
@@ -31,18 +33,18 @@ class ItemTableViewController: UITableViewController {
         
         switch categorie.naam {
         case "Snacks":
-            if let savedItems = Item.loadFromSnacksFile() {
-                items = savedItems
-            }
+            loadSnackData()
         case "Drank":
-            if let savedItems = Item.loadFromDrankFile() {
+          /*  if let savedItems = Item.loadFromDrankFile() {
                 items = savedItems
-                }
+                }*/
+            return
         case "Frieten":
             
-            if let savedItems = Item.loadFromFrietenFile() {
+           /* if let savedItems = Item.loadFromFrietenFile() {
                 items = savedItems
-            }
+            }*/
+            return
            
             
         default:
@@ -50,6 +52,20 @@ class ItemTableViewController: UITableViewController {
         }
         
         navigationItem.title=categorie.naam
+    }
+    
+    func loadSnackData(){
+        db.collection("snacks").getDocuments(){
+            querySnapshot, error in
+            if let error = error {
+                print("\(error.localizedDescription)")
+            }else{
+                self.items = querySnapshot!.documents.flatMap({Item(dictionary: $0.data())})
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
     
  
@@ -78,7 +94,7 @@ class ItemTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemTableViewCell
         cell.showsReorderControl = true
-        //zetSnackItems()
+       
         let item = items[indexPath.row]
         cell.update(with: item)
         
@@ -98,11 +114,14 @@ class ItemTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .automatic)
             switch categorie.naam {
             case "Snacks":
-                Item.saveToSnacksFile(items: items)
+                //Item.saveToSnacksFile(items: items)
+                return
             case "Drank":
-                Item.saveToDrankFile(items: items)
+                //Item.saveToDrankFile(items: items)
+                return
             case "Frieten":
-               Item.saveToFrietenFile(items: items)
+              // Item.saveToFrietenFile(items: items)
+                return
            
                 
             default:
@@ -118,11 +137,14 @@ class ItemTableViewController: UITableViewController {
         tableView.reloadData()
         switch categorie.naam {
         case "Snacks":
-            Item.saveToSnacksFile(items: items)
+            //Item.saveToSnacksFile(items: items)
+            return
         case "Drank":
-            Item.saveToDrankFile(items: items)
+          //  Item.saveToDrankFile(items: items)
+            return
         case "Frieten":
-            Item.saveToFrietenFile(items: items)
+           // Item.saveToFrietenFile(items: items)
+            return
             
             
         default:
@@ -170,11 +192,14 @@ class ItemTableViewController: UITableViewController {
         }
         switch categorie.naam {
         case "Snacks":
-            Item.saveToSnacksFile(items: items)
+            //Item.saveToSnacksFile(items: items)
+            return
         case "Drank":
-            Item.saveToDrankFile(items: items)
+            //Item.saveToDrankFile(items: items)
+            return
         case "Frieten":
-            Item.saveToFrietenFile(items: items)
+          //  Item.saveToFrietenFile(items: items)
+            return
         
         default:
             print("Default")
