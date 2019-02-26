@@ -17,6 +17,7 @@ class AddEditItemTableViewController:UITableViewController{
     
     var item:Item?
     var db:Firestore!
+    var oudeItemId = String()
 
     
     override func viewDidLoad() {
@@ -48,18 +49,36 @@ class AddEditItemTableViewController:UITableViewController{
         guard segue.identifier == "saveUnwind" else { return }
         
         let naam = itemNaamTextField.text ?? ""
+        let OudeNaam = item?.naam
         
         item = Item(naam: naam)
         
-        db.collection("snackx").whereField("naam", isEqualTo: item?.naam)
+        //Toevoegen aan databank
+        var ref:DocumentReference? = nil
+        
+        ref = self.db.collection("snacks").addDocument(data: item!.dictionary) {
+            error in
+            
+            if let error = error {
+                print("Error adding document: \(error.localizedDescription)")
+            }else{
+                print("Document added with ID: \(ref!.documentID)")
+                
+            }
+            
+        }
+        db.collection("snacks").whereField("naam", isEqualTo: OudeNaam)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
                     for document in querySnapshot!.documents {
                         print("\(document.documentID) => \(document.data())")
+                        self.oudeItemId=document.documentID
+                        
                     }
-                    self.db.collection("snacks").document().delete() { err in
+                    
+                    self.db.collection("snacks").document(self.oudeItemId).delete() { err in
                         if let err = err {
                             print("Error removing document: \(err)")
                         } else {
@@ -71,17 +90,7 @@ class AddEditItemTableViewController:UITableViewController{
         
        
         
-        var ref:DocumentReference? = nil
-        ref = self.db.collection("snacks").addDocument(data: item!.dictionary) {
-            error in
-            
-            if let error = error {
-                print("Error adding document: \(error.localizedDescription)")
-            }else{
-                print("Document added with ID: \(ref!.documentID)")
-            }
-            
-        }
+        
         
         
         
