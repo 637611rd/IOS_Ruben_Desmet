@@ -7,5 +7,6 @@ target 'frituur' do
 
   # Pods for frituur
 pod 'Firebase/Core'
-pod 'Firebase/Database'
+pod 'Firebase/Auth'
+pod 'Firestore', :podspec => 'https://storage.googleapis.com/firebase-preview-drop/ios/firestore/0.7.0/Firestore.podspec.json'
 end

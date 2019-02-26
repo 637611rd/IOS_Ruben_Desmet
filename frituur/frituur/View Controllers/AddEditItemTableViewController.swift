@@ -7,11 +7,10 @@
 //
 
 import UIKit
-import FirebaseDatabase
 
 class AddEditItemTableViewController:UITableViewController{
     @IBOutlet weak var itemNaamTextField: UITextField!
-    var ref: DatabaseReference!
+    
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
@@ -22,7 +21,7 @@ class AddEditItemTableViewController:UITableViewController{
             itemNaamTextField.text = item.naam
             
         }
-        ref = Database.database().reference()
+        
         updateSaveButtonState()
     }
     
@@ -47,7 +46,7 @@ class AddEditItemTableViewController:UITableViewController{
         let naam = itemNaamTextField.text ?? ""
         
         item = Item(naam: naam)
-        //ref.child("snacks").childByAutoId().setValue(["naam": naam])
+        
         
         
     }

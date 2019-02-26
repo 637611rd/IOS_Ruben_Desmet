@@ -7,14 +7,12 @@
 //
 
 import UIKit
-import FirebaseDatabase
 
 class ItemTableViewController: UITableViewController {
     
     var items: [Item] = []
     var snackItems:[Item] = []
     var categorie:Categorie=Categorie(naam: "", beschrijving: "")
-    var ref: DatabaseReference!
     var naam:String=""
  
     
@@ -23,7 +21,6 @@ class ItemTableViewController: UITableViewController {
         super.viewDidLoad()
         
         
-        ref = Database.database().reference()
         //self.navigationItem.leftBarButtonItem = self.editButtonItem
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44.0
@@ -31,11 +28,9 @@ class ItemTableViewController: UITableViewController {
        
         
         
-        //zetSnackItems()
         
         switch categorie.naam {
         case "Snacks":
-            //zetSnackItems()
             if let savedItems = Item.loadFromSnacksFile() {
                 items = savedItems
             }
@@ -57,33 +52,7 @@ class ItemTableViewController: UITableViewController {
         navigationItem.title=categorie.naam
     }
     
-   /* func zetSnackItems(){
-        
-        ref.child("snacks").observe(.value, with: {(snapshot) in
-            
-            if let result = snapshot.children.allObjects as? [DataSnapshot] {
-                
-                for child in result {
-                    
-                    let naamID = child.key as String //get autoID
-                    
-                    self.ref.child("snacks/\(naamID)/naam").observe(.value, with: { (snapshot) in
-                        if let nameDB = snapshot.value as? String {
-                            
-                            self.naam=nameDB
-                            self.snackItems.append(Item(naam: self.naam))
-                        print("hierin")
-                            
-                            
-                        }
-                        print(self.snackItems)
-                        Item.saveToSnacksFile(items: self.snackItems)
-                    })
-                }
-                
-            }
-        })
-    }*/
+ 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
