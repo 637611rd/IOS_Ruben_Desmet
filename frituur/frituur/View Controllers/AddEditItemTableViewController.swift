@@ -54,15 +54,20 @@ class AddEditItemTableViewController:UITableViewController{
         
         item = Item(naam: naam)
         
-        //Toevoegen aan databank
-        toevoegenAanDb(categorie: self.categorie, naam: naam)
         
-        //Bij edit: zoek naar het oude element, hou zijn id bij om later te kunnen verwijderen.
+        
+        //Bij edit: zoek naar het oude element, hou zijn id bij om later te kunnen updaten.
         //Bij gewoon toevoegen: oudenaam is leeg dus voert hij deze code niet uit
         if let erIsEenOudeNaam = oudeNaam{
             
-            verwijderOudeIndienEdit(categorie: self.categorie, oudeNaam: erIsEenOudeNaam)
+            //verwijderOudeIndienEdit(categorie: self.categorie, oudeNaam: erIsEenOudeNaam)
+            updateNaam(categorie: self.categorie, oudeNaam: erIsEenOudeNaam, nieuweNaam: naam)
+        }else{
+            //Toevoegen aan databank
+            toevoegenAanDb(categorie: self.categorie, naam: naam)
         }
+        
+        
         
         
     }
@@ -83,6 +88,27 @@ class AddEditItemTableViewController:UITableViewController{
         }
     }
     
+    func updateNaam(categorie: String, oudeNaam: String, nieuweNaam: String){
+        db.collection(categorie.lowercased()).whereField("naam", isEqualTo: oudeNaam)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        print("\(document.documentID) => \(document.data())")
+                        self.oudeItemId=document.documentID
+                        
+                    }
+                    
+                    self.db.collection(self.categorie.lowercased()).document(self.oudeItemId).updateData([
+                        "naam":nieuweNaam
+                        ])
+                    
+                }
+        }
+    }
+    
+    //Deze methode wordt hier niet meer gebruikt.
     func verwijderOudeIndienEdit(categorie: String, oudeNaam:String){
         db.collection(categorie.lowercased()).whereField("naam", isEqualTo: oudeNaam)
             .getDocuments() { (querySnapshot, err) in
