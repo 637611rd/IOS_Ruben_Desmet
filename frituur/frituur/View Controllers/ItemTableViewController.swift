@@ -7,49 +7,36 @@
 //
 
 import UIKit
-import FirebaseDatabase
+import Firestore
 
 class ItemTableViewController: UITableViewController {
     
     var items: [Item] = []
-    var snackItems:[Item] = []
+    //var snackItems=[ItemDb]()
     var categorie:Categorie=Categorie(naam: "", beschrijving: "")
-    var ref: DatabaseReference!
-    var naam:String=""
- 
+    var db: Firestore!
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        db = Firestore.firestore()
         
-        
-        ref = Database.database().reference()
         //self.navigationItem.leftBarButtonItem = self.editButtonItem
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44.0
         
-       
         
         
-        //zetSnackItems()
+        
         
         switch categorie.naam {
         case "Snacks":
-            //zetSnackItems()
-            if let savedItems = Item.loadFromSnacksFile() {
-                items = savedItems
-            }
+            loadData(van: categorie.naam.lowercased())
         case "Drank":
-            if let savedItems = Item.loadFromDrankFile() {
-                items = savedItems
-                }
+            loadData(van: categorie.naam.lowercased())
         case "Frieten":
-            
-            if let savedItems = Item.loadFromFrietenFile() {
-                items = savedItems
-            }
-           
-            
+            loadData(van: categorie.naam.lowercased())
         default:
             print("Default")
         }
@@ -57,33 +44,21 @@ class ItemTableViewController: UITableViewController {
         navigationItem.title=categorie.naam
     }
     
-   /* func zetSnackItems(){
-        
-        ref.child("snacks").observe(.value, with: {(snapshot) in
-            
-            if let result = snapshot.children.allObjects as? [DataSnapshot] {
-                
-                for child in result {
-                    
-                    let naamID = child.key as String //get autoID
-                    
-                    self.ref.child("snacks/\(naamID)/naam").observe(.value, with: { (snapshot) in
-                        if let nameDB = snapshot.value as? String {
-                            
-                            self.naam=nameDB
-                            self.snackItems.append(Item(naam: self.naam))
-                        print("hierin")
-                            
-                            
-                        }
-                        print(self.snackItems)
-                        Item.saveToSnacksFile(items: self.snackItems)
-                    })
+    func loadData(van categorie:String){
+        db.collection(categorie).getDocuments(){
+            querySnapshot, error in
+            if let error = error {
+                print("\(error.localizedDescription)")
+            }else{
+                self.items = querySnapshot!.documents.flatMap({Item(dictionary: $0.data())})
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
                 }
-                
             }
-        })
-    }*/
+        }
+    }
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -109,7 +84,7 @@ class ItemTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemTableViewCell
         cell.showsReorderControl = true
-        //zetSnackItems()
+        
         let item = items[indexPath.row]
         cell.update(with: item)
         
@@ -125,16 +100,22 @@ class ItemTableViewController: UITableViewController {
     //Delete een item en sla de items opnieuw op
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            items.remove(at: indexPath.row)
+            let oudElement=items.remove(at: indexPath.row)
+            
             tableView.deleteRows(at: [indexPath], with: .automatic)
             switch categorie.naam {
             case "Snacks":
-                Item.saveToSnacksFile(items: items)
+                //Item.saveToSnacksFile(items: items)
+                self.deleteItem(naam: oudElement.naam, uit: categorie.naam.lowercased())
+                
             case "Drank":
-                Item.saveToDrankFile(items: items)
+                //Item.saveToDrankFile(items: items)
+                self.deleteItem(naam: oudElement.naam, uit: categorie.naam.lowercased())
+                
             case "Frieten":
-               Item.saveToFrietenFile(items: items)
-           
+                // Item.saveToFrietenFile(items: items)
+                self.deleteItem(naam: oudElement.naam, uit: categorie.naam.lowercased())
+                
                 
             default:
                 print("Default")
@@ -142,18 +123,45 @@ class ItemTableViewController: UITableViewController {
         }
     }
     
-       //Oorspronkelijk stond er edit vanboven in plaats van back. Deze methode zorgde ervoor dat je de elementen van plaats kon verwisselen.
+    func deleteItem(naam:String, uit categorie:String){
+        var oudeItemId=String()
+        db.collection(categorie).whereField("naam", isEqualTo: naam)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        print("\(document.documentID) => \(document.data())")
+                        oudeItemId=document.documentID
+                        
+                    }
+                    
+                    self.db.collection(categorie).document(oudeItemId).delete() { err in
+                        if let err = err {
+                            print("Error removing document: \(err)")
+                        } else {
+                            print("Document successfully removed!")
+                        }
+                    }
+                }
+        }
+    }
+    
+    //Oorspronkelijk stond er edit vanboven in plaats van back. Deze methode zorgde ervoor dat je de elementen van plaats kon verwisselen.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         let movedItem = items.remove(at: fromIndexPath.row)
         items.insert(movedItem, at: to.row)
         tableView.reloadData()
         switch categorie.naam {
         case "Snacks":
-            Item.saveToSnacksFile(items: items)
+            //Item.saveToSnacksFile(items: items)
+            return
         case "Drank":
-            Item.saveToDrankFile(items: items)
+            //  Item.saveToDrankFile(items: items)
+            return
         case "Frieten":
-            Item.saveToFrietenFile(items: items)
+            // Item.saveToFrietenFile(items: items)
+            return
             
             
         default:
@@ -173,6 +181,14 @@ class ItemTableViewController: UITableViewController {
             let addEditItemTableViewController = navigationViewController.topViewController as! AddEditItemTableViewController
             
             addEditItemTableViewController.item = item
+            addEditItemTableViewController.db = self.db
+            addEditItemTableViewController.categorie = self.categorie.naam
+        }
+        else{
+            let navigationViewController = segue.destination as! UINavigationController
+            let addEditItemTableViewController = navigationViewController.topViewController as! AddEditItemTableViewController
+            addEditItemTableViewController.db = self.db
+            addEditItemTableViewController.categorie = self.categorie.naam
         }
         
         
@@ -199,17 +215,7 @@ class ItemTableViewController: UITableViewController {
                 tableView.insertRows(at: [newIndexPath],with: .automatic)
             }
         }
-        switch categorie.naam {
-        case "Snacks":
-            Item.saveToSnacksFile(items: items)
-        case "Drank":
-            Item.saveToDrankFile(items: items)
-        case "Frieten":
-            Item.saveToFrietenFile(items: items)
         
-        default:
-            print("Default")
-        }
         
     }
     
