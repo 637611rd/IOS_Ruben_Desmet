@@ -117,8 +117,8 @@ class AccountViewController : UIViewController, MFMailComposeViewControllerDeleg
     @IBAction func slaGegevensOpButtonTapped(_ sender: Any) {
         
         
-        if localAuthenticationContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil){
-            localAuthenticationContext.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: "We controleren als jij dit bent.", reply: {(wasCorrect,error) in
+        if localAuthenticationContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: nil){
+            localAuthenticationContext.evaluatePolicy(LAPolicy.deviceOwnerAuthentication, localizedReason: "We controleren als jij dit bent.", reply: {(wasCorrect,error) in
                 if wasCorrect{
                     print("Correct")
                     self.gegevensOpslaanMetMelding()
